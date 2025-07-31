@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://bq2wc4b0wnsfq"]
+
+[ext_resource type="Shader" uid="uid://djk7gv4b571rn" path="res://Art/Shaders/grid.gdshader" id="1_o6pxs"]
+[ext_resource type="PackedScene" uid="uid://cdpyxtr216ynv" path="res://Scenes/player.tscn" id="2_d3n4i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d3n4i"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_finow"]
+sky_material = SubResource("ProceduralSkyMaterial_d3n4i")
+
+[sub_resource type="Environment" id="Environment_epnel"]
+background_mode = 2
+sky = SubResource("Sky_finow")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3n4i"]
+render_priority = 0
+shader = ExtResource("1_o6pxs")
+shader_parameter/world_uv = false
+shader_parameter/object_uv = false
+shader_parameter/object_uv_scale = Vector2(1, 1)
+shader_parameter/preset_color = 6
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/metalic = 0.25
+shader_parameter/roughness = 0.75
+shader_parameter/grid_scale = 1.0
+shader_parameter/grid_width = 0.01
+shader_parameter/grid_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/inside_scale = 1.0
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_color = Color(0.8, 0.8, 0.8, 0.8)
+shader_parameter/checkered = true
+shader_parameter/sub_checkered_grid = false
+shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/checkered_blend_color = 0.1
+shader_parameter/use_inside_uv = false
+shader_parameter/use_albedo_color = false
+shader_parameter/albedo_alpha = 0.5
+
+[node name="Level0" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_epnel")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Level Geometry" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
+flip_faces = true
+size = Vector3(50, 50, 50)
+material = SubResource("ShaderMaterial_d3n4i")
+
+[node name="Player" parent="Level Geometry" instance=ExtResource("2_d3n4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.528892, 6, 1.09391)

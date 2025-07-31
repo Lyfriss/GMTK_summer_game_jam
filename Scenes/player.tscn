@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdpyxtr216ynv"]
+
+[ext_resource type="Script" uid="uid://cf7twcod1r2ue" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Shader" uid="uid://djk7gv4b571rn" path="res://Art/Shaders/grid.gdshader" id="2_cvnsp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f60y1"]
+radius = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6t5aa"]
+render_priority = 0
+shader = ExtResource("2_cvnsp")
+shader_parameter/world_uv = false
+shader_parameter/object_uv = false
+shader_parameter/object_uv_scale = Vector2(1, 1)
+shader_parameter/preset_color = 5
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/metalic = 0.25
+shader_parameter/roughness = 0.75
+shader_parameter/grid_scale = 1.0
+shader_parameter/grid_width = 0.01
+shader_parameter/grid_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/inside_scale = 1.0
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_color = Color(0.8, 0.8, 0.8, 0.8)
+shader_parameter/checkered = true
+shader_parameter/sub_checkered_grid = false
+shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/checkered_blend_color = 0.1
+shader_parameter/use_inside_uv = false
+shader_parameter/use_albedo_color = false
+shader_parameter/albedo_alpha = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_vgqql"]
+material = SubResource("ShaderMaterial_6t5aa")
+radius = 0.25
+height = 0.5
+
+[node name="Player" type="CharacterBody3D"]
+motion_mode = 1
+script = ExtResource("1_v0iea")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_f60y1")
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("SphereMesh_vgqql")
