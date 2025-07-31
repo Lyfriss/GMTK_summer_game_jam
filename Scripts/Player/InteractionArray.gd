@@ -9,4 +9,4 @@ func _process(_delta: float) -> void:
 		var interactable : InteractComponent = get_collider()
 		if Input.is_action_just_pressed("Interact"): 
 			print("Interact with "+ str(interactable.name))
-			interactable.interacted
+			interactable.interact()

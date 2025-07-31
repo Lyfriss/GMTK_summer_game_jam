@@ -2,6 +2,6 @@ class_name InteractComponent extends Area3D
 
 signal interacted
 
-
-func _on_interacted() -> void:
+func interact() -> void: 
+	interacted.emit()
 	print("INTERACTED")
