@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdpyxtr216ynv"]
+[gd_scene load_steps=10 format=3 uid="uid://cdpyxtr216ynv"]
 
-[ext_resource type="Script" uid="uid://cf7twcod1r2ue" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://cf7twcod1r2ue" path="res://Scripts/Player/player.gd" id="1_v0iea"]
 [ext_resource type="Shader" uid="uid://djk7gv4b571rn" path="res://Art/Shaders/grid.gdshader" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://dj3j74occoako" path="res://Scenes/InteractionArray.gd" id="2_fkybt"]
+[ext_resource type="FontFile" uid="uid://brb077sgnx8xl" path="res://Art/Keyboard & Mouse/Fonts/kenney_input_keyboard_&_mouse.otf" id="3_fkybt"]
+[ext_resource type="Texture2D" uid="uid://cn045sussgory" path="res://Art/Keyboard & Mouse/Default/keyboard_f.png" id="3_x3wgy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f60y1"]
 radius = 0.25
+
+[sub_resource type="LabelSettings" id="LabelSettings_x3wgy"]
+font = ExtResource("3_fkybt")
+font_size = 32
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6t5aa"]
 render_priority = 0
@@ -45,6 +54,51 @@ shape = SubResource("SphereShape3D_f60y1")
 [node name="Head" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -2)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("2_fkybt")
+
+[node name="InteactPrompt" type="CanvasLayer" parent="Head/RayCast3D"]
+
+[node name="MarginContainer" type="MarginContainer" parent="Head/RayCast3D/InteactPrompt"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -64.0
+offset_right = 87.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 64
+
+[node name="PanelContainer" type="PanelContainer" parent="Head/RayCast3D/InteactPrompt/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Head/RayCast3D/InteactPrompt/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Head/RayCast3D/InteactPrompt/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Head/RayCast3D/InteactPrompt/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_x3wgy")
+
+[node name="Label" type="Label" parent="Head/RayCast3D/InteactPrompt/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Interact"
+label_settings = SubResource("LabelSettings_x3wgy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 gi_mode = 0

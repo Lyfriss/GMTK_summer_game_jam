@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3g67smtuw5t6"]
+
+[ext_resource type="Script" uid="uid://cby36ppi2xtu4" path="res://Scripts/interact_component.gd" id="1_p340a"]
+
+[node name="InteractComponent" type="Area3D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_p340a")
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]
