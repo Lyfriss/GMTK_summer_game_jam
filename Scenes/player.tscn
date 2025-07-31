@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdpyxtr216ynv"]
+[gd_scene load_steps=11 format=3 uid="uid://cdpyxtr216ynv"]
 
 [ext_resource type="Script" uid="uid://cf7twcod1r2ue" path="res://Scripts/Player/player.gd" id="1_v0iea"]
 [ext_resource type="Shader" uid="uid://djk7gv4b571rn" path="res://Art/Shaders/grid.gdshader" id="2_cvnsp"]
 [ext_resource type="Script" uid="uid://dj3j74occoako" path="res://Scripts/Player/InteractionArray.gd" id="2_fkybt"]
+[ext_resource type="Script" uid="uid://imh5ub14agbh" path="res://Scripts/Player/PlayerCamera.gd" id="2_x3wgy"]
 [ext_resource type="FontFile" uid="uid://brb077sgnx8xl" path="res://Art/Keyboard & Mouse/Fonts/kenney_input_keyboard_&_mouse.otf" id="3_fkybt"]
 [ext_resource type="Texture2D" uid="uid://cn045sussgory" path="res://Art/Keyboard & Mouse/Default/keyboard_f.png" id="3_x3wgy"]
 
@@ -54,6 +55,20 @@ shape = SubResource("SphereShape3D_f60y1")
 [node name="Head" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+cull_mask = 1
+script = ExtResource("2_x3wgy")
+all_layer_color = Color(0, 0, 0, 0)
+layer_1_color = Color(1, 0, 0, 0.0980392)
+layer_2_color = Color(0, 1, 0, 0.0980392)
+layer_3_color = Color(0, 0, 1, 0.0980392)
+
+[node name="ColorRect" type="ColorRect" parent="Head/Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Head"]
 target_position = Vector3(0, 0, -2)
@@ -101,5 +116,4 @@ text = "Interact"
 label_settings = SubResource("LabelSettings_x3wgy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-gi_mode = 0
 mesh = SubResource("SphereMesh_vgqql")

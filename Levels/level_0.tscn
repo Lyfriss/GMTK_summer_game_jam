@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bq2wc4b0wnsfq"]
+[gd_scene load_steps=17 format=3 uid="uid://bq2wc4b0wnsfq"]
 
 [ext_resource type="Shader" uid="uid://djk7gv4b571rn" path="res://Art/Shaders/grid.gdshader" id="1_o6pxs"]
 [ext_resource type="PackedScene" uid="uid://cdpyxtr216ynv" path="res://Scenes/player.tscn" id="2_d3n4i"]
@@ -108,6 +108,78 @@ shader_parameter/albedo_alpha = 0.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_5pqfd"]
 size = Vector3(1.05, 1.05, 1.05)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_epnel"]
+render_priority = 0
+shader = ExtResource("1_o6pxs")
+shader_parameter/world_uv = false
+shader_parameter/object_uv = false
+shader_parameter/object_uv_scale = Vector2(1, 1)
+shader_parameter/preset_color = 2
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/metalic = 0.25
+shader_parameter/roughness = 0.75
+shader_parameter/grid_scale = 1.0
+shader_parameter/grid_width = 0.01
+shader_parameter/grid_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/inside_scale = 1.0
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_color = Color(0.8, 0.8, 0.8, 0.8)
+shader_parameter/checkered = true
+shader_parameter/sub_checkered_grid = false
+shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/checkered_blend_color = 0.1
+shader_parameter/use_inside_uv = false
+shader_parameter/use_albedo_color = false
+shader_parameter/albedo_alpha = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5pqfd"]
+render_priority = 0
+shader = ExtResource("1_o6pxs")
+shader_parameter/world_uv = false
+shader_parameter/object_uv = false
+shader_parameter/object_uv_scale = Vector2(1, 1)
+shader_parameter/preset_color = 5
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/metalic = 0.25
+shader_parameter/roughness = 0.75
+shader_parameter/grid_scale = 1.0
+shader_parameter/grid_width = 0.01
+shader_parameter/grid_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/inside_scale = 1.0
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_color = Color(0.8, 0.8, 0.8, 0.8)
+shader_parameter/checkered = true
+shader_parameter/sub_checkered_grid = false
+shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/checkered_blend_color = 0.1
+shader_parameter/use_inside_uv = false
+shader_parameter/use_albedo_color = false
+shader_parameter/albedo_alpha = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_am1cx"]
+render_priority = 0
+shader = ExtResource("1_o6pxs")
+shader_parameter/world_uv = false
+shader_parameter/object_uv = false
+shader_parameter/object_uv_scale = Vector2(1, 1)
+shader_parameter/preset_color = 7
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/metalic = 0.25
+shader_parameter/roughness = 0.75
+shader_parameter/grid_scale = 1.0
+shader_parameter/grid_width = 0.01
+shader_parameter/grid_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/inside_scale = 1.0
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_color = Color(0.8, 0.8, 0.8, 0.8)
+shader_parameter/checkered = true
+shader_parameter/sub_checkered_grid = false
+shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/checkered_blend_color = 0.1
+shader_parameter/use_inside_uv = false
+shader_parameter/use_albedo_color = false
+shader_parameter/albedo_alpha = 0.5
+
 [node name="Level0" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -118,6 +190,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Level Geometry" type="CSGCombiner3D" parent="."]
+layers = 15
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Level Geometry"]
@@ -152,3 +225,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Puzle/CSGBox3D2/InteractComponent"]
 shape = SubResource("BoxShape3D_5pqfd")
 debug_color = Color(0.0980392, 0.560784, 0, 0.764706)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Puzle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 7, -22)
+layers = 3
+size = Vector3(3, 7.5, 1)
+material = SubResource("ShaderMaterial_epnel")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Puzle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 7, -22)
+layers = 5
+size = Vector3(3, 7.5, 1)
+material = SubResource("ShaderMaterial_5pqfd")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Puzle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 7, -22)
+layers = 9
+size = Vector3(3, 7.5, 1)
+material = SubResource("ShaderMaterial_am1cx")
