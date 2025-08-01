@@ -3,10 +3,12 @@ class_name InteractionRay extends RayCast3D
 @onready var inteact_prompt: CanvasLayer = $InteactPrompt
 
 func _process(_delta: float) -> void:
-	inteact_prompt.visible = get_collider() is InteractComponent
-	
 	if get_collider() is InteractComponent: 
 		var interactable : InteractComponent = get_collider()
-		if Input.is_action_just_pressed("Interact"): 
+		inteact_prompt.visible = interactable.is_on_screen
+		if Input.is_action_just_pressed("Interact") and interactable.is_on_screen: 
 			print("Interact with "+ str(interactable.name))
 			interactable.interact()
+	
+	else : 
+		inteact_prompt.visible = false

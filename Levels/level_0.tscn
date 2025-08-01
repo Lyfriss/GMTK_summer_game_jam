@@ -132,30 +132,6 @@ shader_parameter/use_inside_uv = false
 shader_parameter/use_albedo_color = false
 shader_parameter/albedo_alpha = 0.5
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5pqfd"]
-render_priority = 0
-shader = ExtResource("1_o6pxs")
-shader_parameter/world_uv = false
-shader_parameter/object_uv = false
-shader_parameter/object_uv_scale = Vector2(1, 1)
-shader_parameter/preset_color = 5
-shader_parameter/base_color = Color(0, 0, 0, 1)
-shader_parameter/metalic = 0.25
-shader_parameter/roughness = 0.75
-shader_parameter/grid_scale = 1.0
-shader_parameter/grid_width = 0.01
-shader_parameter/grid_color = Color(0.8, 0.8, 0.8, 1)
-shader_parameter/inside_scale = 1.0
-shader_parameter/inside_width = 0.01
-shader_parameter/inside_color = Color(0.8, 0.8, 0.8, 0.8)
-shader_parameter/checkered = true
-shader_parameter/sub_checkered_grid = false
-shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
-shader_parameter/checkered_blend_color = 0.1
-shader_parameter/use_inside_uv = false
-shader_parameter/use_albedo_color = false
-shader_parameter/albedo_alpha = 0.5
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_am1cx"]
 render_priority = 0
 shader = ExtResource("1_o6pxs")
@@ -179,6 +155,9 @@ shader_parameter/checkered_blend_color = 0.1
 shader_parameter/use_inside_uv = false
 shader_parameter/use_albedo_color = false
 shader_parameter/albedo_alpha = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_am1cx"]
+size = Vector3(3.1, 6.1, 1.1)
 
 [node name="Level0" type="Node3D"]
 
@@ -232,14 +211,16 @@ layers = 3
 size = Vector3(3, 7.5, 1)
 material = SubResource("ShaderMaterial_epnel")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Puzle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 7, -22)
-layers = 5
-size = Vector3(3, 7.5, 1)
-material = SubResource("ShaderMaterial_5pqfd")
-
 [node name="CSGBox3D5" type="CSGBox3D" parent="Puzle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 7, -22)
-layers = 9
-size = Vector3(3, 7.5, 1)
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 18.1, -0.4, 7)
+layers = 4
+size = Vector3(3, 6, 1)
 material = SubResource("ShaderMaterial_am1cx")
+
+[node name="InteractComponent" parent="Puzle/CSGBox3D5" instance=ExtResource("4_epnel")]
+my_screen_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Puzle/CSGBox3D5/InteractComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 8.35187e-23, 0, 8.35187e-23, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_am1cx")
+debug_color = Color(1, 1, 1, 1)

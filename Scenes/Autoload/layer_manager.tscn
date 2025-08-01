@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgnukvb2pak53"]
+
+[ext_resource type="Script" uid="uid://bll5hnubfnofa" path="res://Scripts/layer_manager.gd" id="1_rlfh1"]
+
+[node name="LayerManager" type="Node"]
+script = ExtResource("1_rlfh1")

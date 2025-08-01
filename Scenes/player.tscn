@@ -58,9 +58,8 @@ shape = SubResource("SphereShape3D_f60y1")
 cull_mask = 1
 script = ExtResource("2_x3wgy")
 all_layer_color = Color(0, 0, 0, 0)
-layer_1_color = Color(1, 0, 0, 0.0980392)
+layer_1_color = Color(1, 0, 1, 0.0980392)
 layer_2_color = Color(0, 1, 0, 0.0980392)
-layer_3_color = Color(0, 0, 1, 0.0980392)
 
 [node name="ColorRect" type="ColorRect" parent="Head/Camera3D"]
 anchors_preset = 15
